@@ -9,3 +9,9 @@ It is intended as a sample of how to achieve Database + Logic + Templated Views 
 - PHP 5.3.0
 - Composer
 - MySQL or MariaDB
+
+# Installation
+
+1. Point your webserver at /public/index.php
+2. Tweak the database settings in /app/config.php
+3. There is no 3

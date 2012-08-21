@@ -1,0 +1,23 @@
+{% extends "default.html" %}
+
+{% block title %}Document{% endblock %}
+{% block page_title %}{{ document.name }}{% endblock %}
+
+
+{% block content %}
+<div class="row">
+    <div class="span4">
+        <h3>Tags</h3>
+        {% if document.tags|length > 0 %}
+                {% for tag in document.tags %}
+                <a href="/tag/view/{{ tag }}" style="font-size:{{ tag.size }}%; padding-right:10px">{{ tag }}</a>
+                {% endfor %}
+        {% endif %}
+
+    </div>
+
+    <div class="span8">
+        <h3>Contents</h3>
+    </div>
+</div>
+{% endblock %}

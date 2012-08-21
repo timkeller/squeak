@@ -1,5 +1,7 @@
 <?php
 
+$tracking_time_start = microtime(true);
+
 // -----------------------------------------
 // Error Report
 // -----------------------------------------
@@ -24,10 +26,8 @@ require_once APP_ROOT . '/config.php';
 require_once LIB_ROOT . '/twig/twig/lib/Twig/Autoloader.php';
 Twig_Autoloader::register();
 
-$loader = new Twig_Loader_Filesystem(APP_ROOT . '/views/');
-$twig = new Twig_Environment($loader, array(
-    'cache' => '/tmp/compilation_cache',
-));
+$loader = new Twig_Loader_Filesystem(array(APP_ROOT . '/views/', APP_ROOT . '/layouts/'));
+$twig = new Twig_Environment($loader);
 
 // -----------------------------------------
 // Squeak
@@ -67,6 +67,11 @@ else {
 }
 
 // Route Action
+
+if($request[1] == '') {
+	$request[1] = 'Index';
+}
+
 if(isset($request[1])) {
 	$handler = array( ucwords($request[0]).'Controller', ucwords($request[1]).'Action');
 }
@@ -79,8 +84,10 @@ $params = array_splice($request, 2);
 
 // Go!
 if ( is_callable($handler) ) { 
+	global $template_vars;
+	if(count($template_vars)==0) $template_vars = array();
 	call_user_func_array( $handler , $params ); 
-	call_user_func_array( array($request[0].'Controller', '_render') , $request ); 
+	call_user_func_array( array($request[0].'Controller', '_render') , array("request"=>$request,"variables"=>$template_vars )); 
 }
 else {
 	require_once $fourohfour;

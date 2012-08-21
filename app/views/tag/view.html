@@ -1,0 +1,37 @@
+{% extends "default.html" %}
+
+{% block title %}{{ name }} - Tag{% endblock %}
+{% block page_title %}
+{% for t in tag.boolean %}
+<a href="/tag/view/{{ t }}">{{ t }}</a> + 
+{% endfor %}
+{% endblock %}
+
+
+{% block content %}
+<div class="row">
+    <div class="span4">
+        <h3>Related Tags</h3>
+        <div class="well well-small">
+        
+        {% if tag.related_tags|length > 0 %}
+            {% for related_tag in tag.related_tags %}
+                <a href="/tag/view/{{ tag.boolean_prefix}}/{{ related_tag.tag_id }}" style="font-size:{{ related_tag.size }}%; padding-right:10px">{{ related_tag.tag_id }}</a>
+            {% endfor %}
+        {% endif %}
+    </div>
+    </div>
+
+    <div class="span8">
+        <h3>Documents</h3>
+
+        {% if tag.documents|length > 0 %}
+        <table class="table table-condensed">
+            {% for document in tag.documents %}
+                <tr><td><a href="/document/view/{{ document.document_id }}">{{ document.name }}</a></td></tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

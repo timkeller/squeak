@@ -13,5 +13,17 @@ class Document extends BaseModel
 		{
 			$this->$k = $v;
 		}
+
+		// Get tags
+
+		$tags = $db->get_col("SELECT tag_id FROM pivot WHERE document_id = '{$id}'");
+		$this->tags = $tags;
+	}
+
+	static public function count()
+	{
+		global $db;
+		$c = $db->get_col("SELECT count(*) FROM documents");
+		return $c[0];
 	}
 }

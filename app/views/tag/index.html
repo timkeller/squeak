@@ -1,0 +1,26 @@
+{% extends "default.html" %}
+
+{% block title %}Tag Cloud{% endblock %}
+{% block page_title %}Tag Cloud{% endblock %}
+
+
+{% block content %}
+<br>
+<div class="row">
+    <div class="span12" style="line-height:2em">
+        {% if tags|length > 0 %}
+            {% for tag in tags %}
+                <a href="/tag/view/{{ tag.name }}" style="font-size:{{ tag.size }}%; padding-right:10px">{{ tag.name }}</a>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+
+<hr class="soften">
+<div class="row">
+	<div class="span12" style="text-align:center;">
+		There were serveral thousand more tags with less than 100 documents
+	</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "default.html" %}
+
+{% block title %}Welcome{% endblock %}
+{% block page_title %}Welcome{% endblock %}
+
+
+{% block content %}
+<div class="row">
+    <br>
+    <div class="span12">
+        <h2>This is an experimental new tagging system.</h2>
+        <h2><small>We imported</small> {{count_documents}} <small>documents,</small> {{count_tags}} <small>tags, and set up</small> {{count_pivots}}<small> relationships between them.</small></h2>
+        <hr>
+        <p>The current dataset is every movie and keyword on the <a href="http://imdb.com" target="_blank">Internet Movie Database</a>. Turns out that the world has made some <i>interesting</i> movies in the last 100 years.</p>
+    </div>
+</div>
+{% endblock %}

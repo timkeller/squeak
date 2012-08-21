@@ -36,3 +36,22 @@ class Squeak_Autoloader
 		}	
     }
 }
+
+class Tpl
+{
+    static public function add($key, $value)
+    {
+        global $template_vars;
+        $template_vars[$key] = $value;
+    }
+}
+
+class Route 
+{
+    static public function error404($why)
+    {
+        echo "404<hr>";
+        echo $why;
+        exit;
+    }
+}

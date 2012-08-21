@@ -1,5 +1,9 @@
 <?php
 
+// -----------------------------------------
+// Custom importer I wrote for IMDB datafiles
+// -----------------------------------------
+
 ini_set("memory_limit","500M");
 
 if(!defined('APP_ROOT')) define('APP_ROOT',	dirname(dirname(__FILE__)) . "");

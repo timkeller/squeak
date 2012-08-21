@@ -1,5 +1,8 @@
 <?php
 
+// -----------------------------------------
+// Squeak Framework Autoloader
+// -----------------------------------------
 class Squeak_Autoloader
 {
     /**
@@ -37,6 +40,9 @@ class Squeak_Autoloader
     }
 }
 
+// -----------------------------------------
+// Template Helper
+// -----------------------------------------
 class Tpl
 {
     static public function add($key, $value)
@@ -46,6 +52,9 @@ class Tpl
     }
 }
 
+// -----------------------------------------
+// Router help
+// -----------------------------------------
 class Route 
 {
     static public function error404($why)

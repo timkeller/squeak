@@ -7,6 +7,5 @@ class IndexController extends BaseController
 		Tpl::add("count_documents", Document::count());
 		Tpl::add("count_tags", Tag::count());
 		Tpl::add("count_pivots", Tag::countPivots());
-
 	}
 }

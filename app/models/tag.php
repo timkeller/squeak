@@ -4,7 +4,9 @@ class Tag extends BaseModel
 {
 	public function __construct($tags)
 	{
-		// Construct Query
+		// -----------------------------------------
+		// Build up query based on selected tags
+		// -----------------------------------------
 		foreach($tags as $k=>$v)
 		{
 			if($v == "") unset($tags[$k]);
@@ -14,10 +16,12 @@ class Tag extends BaseModel
 
 		$id = $tags[count($tags)-1];
 		$all_tags_str = implode("','", $tags);
-		
-
+	
 		$all_tags_count = count($tags);
 
+		// -----------------------------------------
+		// Get the active tag from the database
+		// -----------------------------------------
 		global $db;
 		$row = $db->get_row("SELECT * FROM tags WHERE name = '{$id}'");
 		
@@ -28,7 +32,9 @@ class Tag extends BaseModel
 			$this->$k = $v;
 		}
 
-		// Fetch documents
+		// -----------------------------------------
+		// Fetch relevant documents
+		// -----------------------------------------
 		$sql = "SELECT document_id, name 
 			    FROM pivot 
 			    INNER JOIN documents ON pivot.document_id = documents.id 
@@ -39,7 +45,10 @@ class Tag extends BaseModel
 		$documents = $db->get_results($sql, ARRAY_A);
 		$this->documents = $documents;
 
-		// Compose List of documents
+
+		// -----------------------------------------
+		// Find the tags related to this tag
+		// -----------------------------------------
 		if(count($this->documents) > 0)
 		{
 			foreach($this->documents as $k=>$v)
@@ -49,7 +58,6 @@ class Tag extends BaseModel
 
 			$document_list_str = implode(",", $document_list);
 
-			// Fetch related tags
 			$sql = "SELECT tag_id, count(*) as popularity 
 					FROM pivot 
 					WHERE tag_id NOT IN ('$all_tags_str') 

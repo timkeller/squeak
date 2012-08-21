@@ -14,8 +14,6 @@ class Document extends BaseModel
 			$this->$k = $v;
 		}
 
-		// Get tags
-
 		$tags = $db->get_col("SELECT tag_id FROM pivot WHERE document_id = '{$id}'");
 		$this->tags = $tags;
 	}

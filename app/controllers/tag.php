@@ -17,7 +17,6 @@ class TagController extends BaseController
 			$tags[$k]['size'] = $minPercent + (($max-($max-($v['popularity']-$min)))*($maxPercent-$minPercent)/($max-$min));  
 		}
 
-
 		Tpl::add("tags",$tags);
 	}
 
